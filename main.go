@@ -13,7 +13,8 @@ func main() {
 	router.HandleFunc("/", defaultHandler)
 
 	http.Handle("/", router)
-	http.ListenAndServe(":5000", nil)
+	fmt.Printf("Port : %d", os.Getenv("PORT"))
+	http.ListenAndServe(fmt.Sprintf(":%d", os.Getenv("PORT")), nil)
 }
 
 func subdomainHandler(w http.ResponseWriter, r *http.Request) {
