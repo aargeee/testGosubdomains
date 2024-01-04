@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"net/http"
-	"os"
 
 	"github.com/gorilla/mux"
 )
@@ -14,8 +13,7 @@ func main() {
 	router.HandleFunc("/", defaultHandler)
 
 	http.Handle("/", router)
-	fmt.Printf("Port : %d", os.Getenv("PORT"))
-	http.ListenAndServe(fmt.Sprintf(":%d", os.Getenv("PORT")), nil)
+	http.ListenAndServe("0.0.0.0:8080", nil)
 }
 
 func subdomainHandler(w http.ResponseWriter, r *http.Request) {
